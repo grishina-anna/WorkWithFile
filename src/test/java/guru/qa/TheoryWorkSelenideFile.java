@@ -11,25 +11,26 @@ import java.nio.charset.StandardCharsets;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class HomeWorkSelenideFile {
+public class TheoryWorkSelenideFile {
 
-    private ClassLoader cl = HomeWorkSelenideFile.class.getClassLoader();
+    private ClassLoader cl = TheoryWorkSelenideFile.class.getClassLoader();
 
+    //скачать файл
     @Test
     void downloadTest() throws Exception {
         Selenide.open("https://github.com/junit-team/junit5/blob/main/LICENSE.md");
         File downloadedFile = Selenide.$("#raw-url").download();
         try (InputStream is = new FileInputStream(downloadedFile)) {
             assertThat(new String(is.readAllBytes(), StandardCharsets.UTF_8))
-                    .contains("Eclipse License - v 2.0");
+                    .contains("Eclipse Public License - v 2.0");
         }
     }
-
+     //загрузить файл на сайт
     @Test
     void uploadFile()    {
         Selenide.open("https://the-internet.herokuapp.com/upload");
         Selenide.$("input[type='file']").uploadFromClasspath("files/upload.txt");
         Selenide.$("#file-submit").click();
-        Selenide.$("#upload-files").shouldHave(Condition.text("files/upload.txt"));
+        Selenide.$("#uploaded-files").shouldHave(Condition.text("upload.txt"));
     }
 }
