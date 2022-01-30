@@ -2,7 +2,6 @@ package guru.qa;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.xlstest.XLS;
 import com.opencsv.CSVReader;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +15,7 @@ import java.util.zip.ZipInputStream;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class FileParsingTest {
 
@@ -31,14 +31,14 @@ public class FileParsingTest {
     }
 
      //Xls
-    @Test
-    void parseXlsTest() throws Exception {
-        try (InputStream stream = cl.getResourceAsStream("files/sample-xlsx-file.xlsx")) {
-            XLS parsed = new XLS(stream); //stream нужно закрыть потом!!! с помощью try
-            assertThat(parsed.excel.getSheetAt(0).getRow(1).getCell(2).getStringCellValue()
-                    .isEqualTo("Abril");
-        }
-    }
+//    @Test
+//    void parseXlsTest() throws Exception {
+//        try (InputStream stream = cl.getResourceAsStream("files/sample-xlsx-file.xlsx")) {
+//            XLS parsed = new XLS(stream); //stream нужно закрыть потом!!! с помощью try
+//            assertThat(parsed.excel.getSheetAt(0).getRow(1).getCell(2).getStringCellValue()
+//                    .isEqualTo("Abril");
+//        }
+//    }
 
 
     @Test
@@ -68,3 +68,4 @@ public class FileParsingTest {
         //прочитать содержимое
         ZipFile zf = new ZipFile(new File(cl.getResource("files/sample-zip-file.zip").toURI()));
     }
+}

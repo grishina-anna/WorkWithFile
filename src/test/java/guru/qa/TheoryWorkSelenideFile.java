@@ -25,9 +25,10 @@ public class TheoryWorkSelenideFile {
                     .contains("Eclipse Public License - v 2.0");
         }
     }
-     //загрузить файл на сайт
+
+    //загрузить файл на сайт
     @Test
-    void uploadFile()    {
+    void uploadFile() {
         Selenide.open("https://the-internet.herokuapp.com/upload");
         Selenide.$("input[type='file']").uploadFromClasspath("files/upload.txt");
         Selenide.$("#file-submit").click();
